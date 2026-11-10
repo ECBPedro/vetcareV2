@@ -1,0 +1,26 @@
+/* ---- Tela de login: painel azul à esquerda, formulário à direita ---- */
+.tela-login { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; background: #fff; }
+.login-lateral { background: var(--azul); color: #fff; padding: 48px; display: flex; flex-direction: column; justify-content: space-between; }
+.login-lateral h1 { font-size: 2rem; max-width: 18ch; }
+.login-formulario { display: flex; align-items: center; justify-content: center; padding: 24px; }
+.login-formulario form { width: 100%; max-width: 340px; display: flex; flex-direction: column; gap: 8px; }
+
+/* ---- Páginas internas: topo + menu lateral + conteúdo ---- */
+.topo { background: #fff; display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; border-bottom: 1px solid var(--borda); }
+.topo .botao { margin: 0 0 0 12px; padding: 8px 14px; }
+.corpo { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 57px); }
+.menu { background: #fff; border-right: 1px solid var(--borda); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.menu a { padding: 10px 12px; border-radius: 8px; color: var(--texto); text-decoration: none; }
+.menu a:hover, .menu a.ativo { background: #e0f0ee; color: #1b6b5f; }
+.conteudo { padding: 32px; }
+
+@media (max-width: 800px) {
+  .tela-login { grid-template-columns: 1fr; }
+  .login-lateral { display: none; }
+  .corpo { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 800px) {
+  .colunas, .colunas.com-resumo, .linha { grid-template-columns: 1fr; }
+  .grade-horarios { grid-template-columns: repeat(3, 1fr); }
+}

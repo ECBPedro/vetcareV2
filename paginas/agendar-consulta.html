@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare – Agendar consulta</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+</head>
+<body>
+  <header class="topo">
+    <strong>VetCare</strong>
+    <div>
+      <span id="nome-usuario"></span> · <span id="perfil-usuario"></span>
+      <button id="sair" class="botao">Sair</button>
+    </div>
+  </header>
+
+  <div class="corpo">
+    <nav id="menu" class="menu"></nav>
+    <main class="conteudo">
+      <div class="cabecalho"><h1>Agendar consulta</h1><p class="subtitulo">Escolha o animal, o veterinário e um horário livre.</p></div>
+      <p id="aviso" class="aviso" hidden></p>
+      <div class="colunas com-resumo">
+        <form id="form-agendar" class="cartao formulario" novalidate>
+          <label for="animal">Tutor ou animal</label><select id="animal"></select>
+          <div class="linha">
+            <div><label for="veterinario">Veterinário</label><select id="veterinario"></select></div>
+            <div><label for="data">Data</label><input id="data" type="date"></div>
+          </div>
+          <label>Horários disponíveis</label>
+          <div id="horarios" class="grade-horarios"></div>
+          <div class="acoes"><a href="agenda.html" class="botao secundario">Cancelar</a><button type="submit" class="botao">Confirmar consulta</button></div>
+        </form>
+        <aside class="cartao resumo">
+          <h2>Resumo</h2>
+          <dl>
+            <dt>Animal</dt><dd id="r-animal">—</dd>
+            <dt>Tutor</dt><dd id="r-tutor">—</dd>
+            <dt>Veterinário</dt><dd id="r-vet">—</dd>
+            <dt>Data</dt><dd id="r-data">—</dd>
+            <dt>Hora</dt><dd id="r-hora">—</dd>
+          </dl>
+          <p class="aviso alerta">Horários ocupados não podem ser escolhidos.</p>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../js/app/agendar-consulta.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare – Tutores e animais</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+</head>
+<body>
+  <header class="topo">
+    <strong>VetCare</strong>
+    <div>
+      <span id="nome-usuario"></span> · <span id="perfil-usuario"></span>
+      <button id="sair" class="botao">Sair</button>
+    </div>
+  </header>
+
+  <div class="corpo">
+    <nav id="menu" class="menu"></nav>
+    <main class="conteudo">
+      <div class="cabecalho"><h1>Cadastro de tutor e animal</h1><p class="subtitulo">O animal fica vinculado ao tutor.</p></div>
+      <p id="aviso" class="aviso" hidden></p>
+      <div class="colunas">
+        <form id="form-tutor" class="cartao formulario" novalidate>
+          <h2>Tutor</h2>
+          <input type="hidden" name="id">
+          <label for="t-nome">Nome completo</label><input id="t-nome" name="nome">
+          <div class="linha">
+            <div><label for="t-cpf">CPF</label><input id="t-cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00"></div>
+            <div><label for="t-telefone">Telefone</label><input id="t-telefone" name="telefone" inputmode="tel" placeholder="(71) 99999-0000"></div>
+          </div>
+          <label for="t-email">E-mail</label><input id="t-email" name="email" type="email">
+          <div class="acoes"><button type="reset" class="botao secundario" id="cancelar-tutor">Cancelar</button><button type="submit" class="botao">Salvar tutor</button></div>
+        </form>
+
+        <form id="form-animal" class="cartao formulario" novalidate>
+          <h2>Animal (vinculado ao tutor)</h2>
+          <input type="hidden" name="id">
+          <label for="a-tutor">Tutor</label><select id="a-tutor" name="tutorId"></select>
+          <label for="a-nome">Nome</label><input id="a-nome" name="nome">
+          <div class="linha">
+            <div><label for="a-especie">Espécie</label>
+              <select id="a-especie" name="especie"><option value="">Selecione</option><option>Cão</option><option>Gato</option><option>Ave</option><option>Outro</option></select></div>
+            <div><label for="a-sexo">Sexo</label>
+              <select id="a-sexo" name="sexo"><option value="">Selecione</option><option>Macho</option><option>Fêmea</option></select></div>
+          </div>
+          <div class="linha">
+            <div><label for="a-raca">Raça</label><input id="a-raca" name="raca"></div>
+            <div><label for="a-nascimento">Data de nascimento</label><input id="a-nascimento" name="nascimento" type="date"></div>
+          </div>
+          <div class="acoes"><button type="reset" class="botao secundario" id="cancelar-animal">Cancelar</button><button type="submit" class="botao">Salvar animal</button></div>
+        </form>
+      </div>
+
+      <section class="cartao">
+        <h2>Cadastrados</h2>
+        <div class="filtros"><div><label for="busca">Buscar por nome ou CPF</label><input id="busca" type="search"></div></div>
+        <table class="tabela"><thead><tr><th>Tutor</th><th>CPF</th><th>Telefone</th><th>Ações</th></tr></thead><tbody id="lista-tutores"></tbody></table>
+        <table class="tabela"><thead><tr><th>Animal</th><th>Espécie</th><th>Raça</th><th>Tutor</th><th>Ações</th></tr></thead><tbody id="lista-animais"></tbody></table>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="../js/app/tutores-animais.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare – Entrar</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+</head>
+<body class="tela-login">
+  <section class="login-lateral">
+    <strong>VetCare</strong>
+    <div>
+      <h1>Agenda, prontuário e finanças da clínica em um só lugar.</h1>
+      <p>Sistema de gestão para clínica veterinária.</p>
+    </div>
+    <small>Ambiente seguro · acesso por perfil</small>
+  </section>
+
+  <main class="login-formulario">
+    <form id="form-login">
+      <h2>Entrar</h2>
+      <p class="subtitulo">Use suas credenciais de acesso.</p>
+
+      <label for="email">Usuário ou e-mail</label>
+      <input id="email" name="email" type="text" autocomplete="username">
+
+      <label for="senha">Senha</label>
+      <input id="senha" name="senha" type="password" autocomplete="current-password">
+
+      <p id="erro" class="erro" hidden></p>
+      <button type="submit" class="botao">Entrar</button>
+      <a href="paginas/recuperar-senha.html">Esqueci minha senha</a>
+    </form>
+  </main>
+
+  <script type="module" src="js/app/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare – Agenda</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+</head>
+<body>
+  <header class="topo">
+    <strong>VetCare</strong>
+    <div>
+      <span id="nome-usuario"></span> · <span id="perfil-usuario"></span>
+      <button id="sair" class="botao">Sair</button>
+    </div>
+  </header>
+
+  <div class="corpo">
+    <nav id="menu" class="menu"></nav>
+    <main class="conteudo">
+      <div class="cabecalho"><h1 id="titulo">Agenda</h1><p id="subtitulo" class="subtitulo"></p></div>
+      <div class="abas">
+        <button type="button" class="aba ativa" data-visao="dia">Dia</button>
+        <button type="button" class="aba" data-visao="semana">Semana</button>
+        <button type="button" class="aba" data-visao="profissional">Profissional</button>
+      </div>
+      <div class="filtros">
+        <div id="campo-data"><label for="data">Data</label><input id="data" type="date"></div>
+        <div id="campo-vet"><label for="veterinario">Veterinário</label><select id="veterinario"></select></div>
+      </div>
+      <p id="aviso" class="aviso" hidden></p>
+      <div class="cartao" style="padding:0;overflow:hidden">
+        <table class="tabela" style="margin:0"><thead><tr><th>Data</th><th>Hora</th><th>Animal · Tutor</th><th>Veterinário</th><th>Status</th></tr></thead><tbody id="lista"></tbody></table>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="../js/app/agenda.js"></script>
+</body>
+</html>
