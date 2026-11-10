@@ -20,7 +20,7 @@ As decisões que diferem da Etapa 1 estão em [`docs/ADRs-etapa-2.md`](docs/ADRs
 Precisa só de um navegador e do Python (ou qualquer servidor de arquivos estáticos).
 
 ```bash
-git clone https://github.com/Roi-in/vetcare.git
+git clone https://github.com/ECBPedro/vetcareV2.git
 cd vetcare
 python3 -m http.server 8000
 ```
