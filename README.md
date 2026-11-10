@@ -3,7 +3,7 @@
 Sistema de gestão para clínica veterinária (Trabalho II – Engenharia de Software 1, UFBA).
 Feito só com **HTML, CSS e JavaScript** (sem servidor e sem banco de dados). Estilo arquitetural: **monolito modular**.
 
-## Requisitos implementados na Sprint 1 (5 de 17 ≈ 29%)
+## Requisitos implementados nessa etapa
 
 | REQ | Requisito | Onde está |
 |---|---|---|
