@@ -1,2 +1,2 @@
 // Interface pública do módulo Agendamento.
-export { agendar, consultarAgenda, horariosDoDia } from "./servico.js";
+export { agendar, cancelar, consultarAgenda, horariosDoDia } from "./servico.js";

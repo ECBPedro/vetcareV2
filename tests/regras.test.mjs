@@ -80,3 +80,16 @@ test("REQ 09: veterinário vê só a própria agenda; semana inclui os 7 dias", 
   entrar("ana.souza@clinica.com", "recep123");
   assert.ok(agenda.consultarAgenda({ visao: "semana", data: hoje() }).dados.length >= 4);
 });
+
+test("REQ 08: cancelar libera o horário, não apaga a consulta e só a recepção cancela", () => {
+  entrar("ana.souza@clinica.com", "recep123");
+  const consulta = agenda.agendarConsulta({ animalId: 1, veterinarioId: 1, data: AMANHA, hora: "09:00" }).dados;
+  assert.equal(agenda.horarios({ veterinarioId: 1, data: AMANHA }).dados.find((h) => h.hora === "09:00").livre, false);
+  assert.equal(agenda.cancelarConsulta(consulta.id).ok, true);
+  assert.equal(agenda.horarios({ veterinarioId: 1, data: AMANHA }).dados.find((h) => h.hora === "09:00").livre, true);   // cache invalidado
+  const dia = agenda.consultarAgenda({ visao: "dia", data: AMANHA }).dados;
+  assert.equal(dia.find((c) => c.id === consulta.id).status, "CANCELADA");                                              // histórico preservado
+  assert.equal(agenda.cancelarConsulta(consulta.id).erro, "Consulta não encontrada ou já cancelada.");                  // cancelar de novo
+  entrar("paulo.reis@clinica.com", "vet12345");
+  assert.equal(agenda.cancelarConsulta(1).codigo, 403);                                                                  // veterinário não cancela
+});

@@ -61,3 +61,11 @@ export function consultarAgenda({ visao = "dia", data = hoje(), veterinarioId = 
       veterinarioNome: buscarVeterinario(c.veterinarioId)?.nome ?? "—",
     }));
 }
+
+// REQ 08: cancela uma consulta agendada e libera o horário.
+export function cancelar(id) {
+  const consulta = consultas.buscarPorId(id);
+  if (!consulta || consulta.status !== "AGENDADA") throw new ErroDeNegocio("Consulta não encontrada ou já cancelada.");
+  consultas.salvar({ ...consulta, status: "CANCELADA" });   // não apaga: o histórico fica (ADR 07 da Etapa 1)
+  invalidar(`agenda:${consulta.veterinarioId}:${consulta.data}`);   // o horário volta a aparecer livre
+}

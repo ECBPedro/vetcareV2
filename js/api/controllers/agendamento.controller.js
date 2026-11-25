@@ -15,3 +15,7 @@ export const consultarAgenda = (filtro) =>
     const proprio = sessao.perfil === "VETERINARIO" ? buscarVeterinarioPorUsuario(sessao.id)?.id : null;
     return agendamento.consultarAgenda({ ...filtro, veterinarioId: proprio ?? filtro.veterinarioId });
   });
+
+// REQ 08: só quem pode agendar pode cancelar (matriz de permissões da Etapa 1).
+export const cancelarConsulta = (id) =>
+  executar("agenda:agendar", () => agendamento.cancelar(Number(id)));

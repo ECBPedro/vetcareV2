@@ -1,7 +1,7 @@
 // Tela "Agenda" (REQ 09): visões por dia, semana ou profissional.
 import { montarLayout } from "./layout.js";
 import { criar, mostrarAviso, preencherSelect } from "./dom.js";
-import { consultarAgenda } from "../api/controllers/agendamento.controller.js";
+import { consultarAgenda, cancelarConsulta } from "../api/controllers/agendamento.controller.js";
 import { listarVeterinarios } from "../api/controllers/profissionais.controller.js";
 import { hoje, paraBR, nomeDoDia, inicioDaSemana, somarDias } from "../compartilhado/datas.js";
 
@@ -14,6 +14,7 @@ function iniciar() {
   const vetSelect = document.querySelector("#veterinario");
   const aviso = document.querySelector("#aviso");
   let visao = "dia";
+  const podeCancelar = sessao.perfil === "RECEPCIONISTA";   // o controller também confere (ADR 02)
 
   dataInput.value = hoje();
   preencherSelect(vetSelect, (listarVeterinarios().dados ?? []).map((v) => ({ valor: v.id, texto: v.nome })), "Todos");
@@ -41,12 +42,21 @@ function iniciar() {
     if (visao === "semana") sub.textContent = `Semana de ${paraBR(inicioDaSemana(dataInput.value))} a ${paraBR(somarDias(inicioDaSemana(dataInput.value), 6))}`;
     if (visao === "profissional") sub.textContent = "Próximas consultas do profissional";
 
-    if (!resposta.dados.length) { corpo.append(criar("tr", {}, [criar("td", { texto: "Nenhuma consulta no período.", colspan: "5" })])); return; }
+    if (!resposta.dados.length) { corpo.append(criar("tr", {}, [criar("td", { texto: "Nenhuma consulta no período.", colspan: "6" })])); return; }
     resposta.dados.forEach((c) => corpo.append(criar("tr", {}, [
       criar("td", { texto: paraBR(c.data) }), criar("td", { texto: c.hora, style: "font-weight:700;color:#1b4965" }),
       criar("td", { texto: `${c.animalNome} · ${c.tutorNome}` }), criar("td", { texto: c.veterinarioNome }),
       criar("td", {}, [criar("span", { texto: c.status === "AGENDADA" ? "Confirmada" : "Cancelada", class: c.status === "AGENDADA" ? "selo" : "selo cancelada" })]),
+      criar("td", {}, podeCancelar && c.status === "AGENDADA"
+        ? [criar("button", { texto: "Cancelar", type: "button", class: "botao perigo pequeno", onclick: () => cancelar(c) })] : []),
     ])));
+  }
+
+  function cancelar(c) {
+    if (!window.confirm(`Cancelar a consulta de ${c.animalNome} em ${paraBR(c.data)} às ${c.hora}?`)) return;
+    const resposta = cancelarConsulta(c.id);
+    desenhar();
+    mostrarAviso(aviso, resposta.ok ? "Consulta cancelada." : resposta.erro, resposta.ok ? "sucesso" : "erro");   // depois de desenhar, pois desenhar limpa o aviso
   }
 
   document.querySelectorAll(".aba").forEach((b) => b.addEventListener("click", () => { visao = b.dataset.visao; desenhar(); }));
