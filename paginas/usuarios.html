@@ -20,8 +20,34 @@
   <div class="corpo">
     <nav id="menu" class="menu"></nav>
     <main class="conteudo">
-      <h1>Gestão de usuários</h1>
-      <div class="cartao">Funcionalidade prevista para uma próxima sprint (REQ 01).</div>
+      <div class="cabecalho cabecalho-acao">
+        <div><h1>Gestão de usuários</h1><p class="subtitulo">Cadastre, edite e inative usuários.</p></div>
+        <button type="button" id="novo" class="botao">+ Novo usuário</button>
+      </div>
+      <p id="aviso" class="aviso" hidden></p>
+
+      <form id="form-usuario" class="cartao formulario" novalidate hidden style="margin-bottom:24px">
+        <h2 id="titulo-form">Novo usuário</h2>
+        <input type="hidden" name="id">
+        <div class="linha">
+          <div><label for="u-nome">Nome</label><input id="u-nome" name="nome"></div>
+          <div><label for="u-email">E-mail</label><input id="u-email" name="email" type="email"></div>
+        </div>
+        <div class="linha">
+          <div><label for="u-perfil">Perfil</label><select id="u-perfil" name="perfil"></select></div>
+          <div><label for="u-senha" id="rotulo-senha">Senha</label><input id="u-senha" name="senha" type="password" autocomplete="new-password"></div>
+        </div>
+        <div class="acoes"><button type="button" id="cancelar" class="botao secundario">Cancelar</button><button type="submit" class="botao">Salvar</button></div>
+      </form>
+
+      <div class="filtros">
+        <div><label for="busca">Buscar usuário</label><input id="busca" type="search" placeholder="Nome ou e-mail"></div>
+        <div><label for="filtro-perfil">Perfil</label><select id="filtro-perfil"></select></div>
+      </div>
+      <div class="cartao" style="padding:0;overflow:hidden">
+        <table class="tabela" style="margin:0"><thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Status</th><th>Ações</th></tr></thead><tbody id="lista"></tbody></table>
+      </div>
+      <p class="subtitulo">Excluir significa inativar: o histórico é preservado.</p>
     </main>
   </div>
 

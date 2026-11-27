@@ -43,6 +43,9 @@ const PERMISSOES = {
   "animal:consultar":       ["ADMINISTRADOR", "RECEPCIONISTA", "VETERINARIO"],
   "animal:gravar":          ["ADMINISTRADOR", "RECEPCIONISTA"],
   "profissional:consultar": ["ADMINISTRADOR", "RECEPCIONISTA", "VETERINARIO"],
+  "profissional:gravar":    ["ADMINISTRADOR"],
+  "usuario:consultar":      ["ADMINISTRADOR"],
+  "usuario:gravar":         ["ADMINISTRADOR"],
   "agenda:consultar":       ["ADMINISTRADOR", "RECEPCIONISTA", "VETERINARIO"],
   "agenda:agendar":         ["RECEPCIONISTA"],
 };

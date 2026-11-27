@@ -20,8 +20,28 @@
   <div class="corpo">
     <nav id="menu" class="menu"></nav>
     <main class="conteudo">
-      <h1>Cadastro de veterinário</h1>
-      <div class="cartao">Funcionalidade prevista para uma próxima sprint (REQ 06).</div>
+      <div class="cabecalho"><h1>Cadastro de veterinário</h1><p class="subtitulo">Dados profissionais vinculados a um usuário.</p></div>
+      <p id="aviso" class="aviso" hidden></p>
+      <div class="colunas">
+        <form id="form-vet" class="cartao formulario" novalidate>
+          <h2 id="titulo-form">Novo veterinário</h2>
+          <input type="hidden" name="id">
+          <label for="v-nome">Nome completo</label><input id="v-nome" name="nome">
+          <div class="linha">
+            <div><label for="v-crmv">CRMV</label><input id="v-crmv" name="crmv" placeholder="BA-12345"></div>
+            <div><label for="v-esp">Especialidade</label>
+              <select id="v-esp" name="especialidade"><option value="">Selecione</option><option>Clínica geral</option><option>Cirurgia</option><option>Dermatologia</option><option>Cardiologia</option><option>Ortopedia</option><option>Outra</option></select></div>
+          </div>
+          <label for="v-usuario">Usuário vinculado (perfil Veterinário)</label><select id="v-usuario" name="usuarioId"></select>
+          <label for="v-tel">Telefone</label><input id="v-tel" name="telefone" inputmode="tel" placeholder="(71) 99999-0000">
+          <div class="acoes"><button type="button" id="cancelar" class="botao secundario">Cancelar</button><button type="submit" class="botao">Salvar</button></div>
+        </form>
+
+        <section class="cartao">
+          <h2>Veterinários cadastrados</h2>
+          <table class="tabela"><thead><tr><th>Nome</th><th>CRMV</th><th>Ações</th></tr></thead><tbody id="lista"></tbody></table>
+        </section>
+      </div>
     </main>
   </div>
 

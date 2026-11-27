@@ -43,3 +43,13 @@ input, select, textarea { padding: 10px 12px; border: 1px solid var(--borda); bo
 .resumo dt { color: #66727d; }
 .resumo dd { margin: 0; text-align: right; font-weight: 500; }
 select { background: #fff; }
+
+/* O atributo hidden precisa vencer regras como "display: flex" (formulários, filtros). */
+[hidden] { display: none !important; }
+
+/* ---- Gestão de usuários e veterinários ---- */
+.cabecalho-acao { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.selo.admin { background: #1b4965; }
+.selo.recep { background: #8a5a14; }
+.selo.vet { background: #1f6f64; }
+.selo.inativo { background: #6c7a89; }

@@ -15,6 +15,7 @@ Numeração continua a da Etapa 1 (ADR 01 a 04). Todas com status **Aceito**.
 ## ADR 07 – Autenticação simulada
 - **O que mudou:** a ADR 03 pedia hash de senha (Argon2id), JWT assinado, bloqueio após 5 falhas e recuperação por token. Aqui o token é apenas codificado em base64 (qualquer um poderia forjá-lo) e as senhas de teste ficam em texto; REQ 03 não foi implementado.
 - **Justificativa:** sem servidor não existe segredo para assinar tokens. Mantivemos o fluxo (login → token com validade de 30 min → permissão por perfil verificada a cada ação no controller) e a mensagem genérica de erro.
+- **Atualização (REQ 01):** as senhas cadastradas pela tela de usuários também ficam em texto no armazenamento do navegador, e a tela nunca as exibe. A porta de entrada passou a conferir o usuário no cadastro a cada ação: quem é inativado perde o acesso na hora e o perfil vale o que está cadastrado, não o gravado no token.
 - **Consequências:** (+) o RBAC aparece funcionando e testado. (−) **não é seguro para produção**; documentado no README.
 
 ## ADR 08 – Interface em páginas HTML separadas, sem framework (não é SPA)

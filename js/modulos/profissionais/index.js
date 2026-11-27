@@ -1,2 +1,6 @@
 // Interface pública do módulo Profissionais.
-export { listarVeterinarios, buscarVeterinario, buscarVeterinarioPorUsuario } from "./servico.js";
+export {
+  ESPECIALIDADES,
+  listarVeterinarios, buscarVeterinario, buscarVeterinarioPorUsuario, usuariosParaVinculo,
+  cadastrarVeterinario, alterarVeterinario, consultarVeterinarios, inativarVeterinario,
+} from "./servico.js";
